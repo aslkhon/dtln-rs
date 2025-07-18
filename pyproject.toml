@@ -1,0 +1,20 @@
+[build-system]
+requires = ["maturin>=1.8,<2"]
+build-backend = "maturin"
+
+[project]
+name = "dtln_rs"
+version = "0.1.0"
+description = "Denoising Tiny-Loud-Noise (DTLN) Rust bindings"
+authors = [{ name = "Aslkhon Khoshimkhujaev" }]
+license = { text = "Private" }
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+[tool.maturin]
+features = ["python"]

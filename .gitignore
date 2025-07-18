@@ -15,3 +15,4 @@ dtln_rs.wasm
 
 node_modules/
 audio/
+.venv/

@@ -1,11 +1,13 @@
 // High level wrapper around DTLN that provides a simple interface.
 
 use anyhow::{Context, Result};
-use neon::prelude::*;
 use std::sync::atomic::AtomicBool;
 use std::sync::mpsc::Receiver;
 use std::sync::{mpsc, Arc, Mutex};
 use std::thread;
+
+#[cfg(feature = "nodejs")]
+use neon::prelude::*;
 
 use crate::dtln_engine::{dtln_create, dtln_denoise, DtlnEngine};
 
@@ -28,6 +30,8 @@ pub struct DtlnDeferredProcessor {
     processor_handle: Option<thread::JoinHandle<()>>,
 }
 
+// Only implement Finalize when nodejs feature is enabled
+#[cfg(feature = "nodejs")]
 impl Finalize for DtlnDeferredProcessor {
     fn finalize<'a, C: neon::prelude::Context<'a>>(self, _: &mut C) {
         drop(self);
